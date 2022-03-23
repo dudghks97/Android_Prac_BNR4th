@@ -1,0 +1,24 @@
+package com.bignerdranch.android.criminalintent
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        
+        if (currentFragment == null) {
+            val fragment = CrimeListFragment.newInstance()
+            // val fragment = CrimeFragment()
+            // 프래그먼트 트랜잭션 생성 및 커밋
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container, fragment)
+                .commit()
+        }
+        
+    }
+}
